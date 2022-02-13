@@ -23,6 +23,14 @@ body {
     background-size: auto 50%;
 }
 
+@media screen and (min-width: 1000px) {
+body {
+    background-size: contain;
+    padding-top: 10.4rem;
+}
+}
+
+
 .card-wrapper {
     display: flex;
     flex-flow: column nowrap;
@@ -31,12 +39,24 @@ body {
     width: 100%;
 }
 
+@media screen and (min-width: 1000px) {
+    .card-wrapper {
+        gap: 9.1rem;
+    }
+}
+
 .pricing-card-header {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
     gap: .8rem;
     position: relative;
+}
+
+@media screen and (min-width: 620px) {
+    .pricing-card-header {
+        gap: 1.2rem;
+    }
 }
 
 .pricing-card-header::before {
@@ -49,11 +69,19 @@ body {
     z-index: -1;
 }
 
+/* card h2 heading style  */
 .pricing-card-header h2 {
     font-weight: 800;
     font-size: 2rem;
     line-height: 2.3rem;
     color: #293356;
+}
+
+@media screen and (min-width: 620px) {
+    .pricing-card-header h2 {
+        font-size: 2.8rem;
+        line-height: 3.8rem;
+    }
 }
 
 .pricing-card-header p {
@@ -64,6 +92,13 @@ body {
     max-width: 17rem;
 }
 
+@media screen and (min-width: 620px) {
+    .pricing-card-header p{
+        font-size: 1.5rem;
+        line-height: 2rem;
+        max-width: none;
+    }
+}
 @media screen and (min-width: 620px) {
     .pricing-card-header p {
         max-width: unset;
@@ -82,6 +117,17 @@ form.pricing-card {
     justify-items: center;
 }
 
+@media screen and (min-width: 620px) {
+    form.pricing-card {
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: max-content;
+        padding: 4rem 0;
+        align-items: center;
+        gap: 4rem;
+    }
+}
+
+
 .pricing-card__views {
     font-weight: 800;
     font-size: 1.2rem;
@@ -91,11 +137,28 @@ form.pricing-card {
     color: #848ead;
 }
 
+
+@media screen and (min-width: 620px) {
+    .pricing-card__views {
+        font-size: 1.4rem;
+        line-height: 1.9rem;
+        letter-spacing: 0.2rem; 
+    }
+}
 .pricing-card__views-range {
     margin: 0.7rem 0 0.6rem;
     max-width: 85%;
 }
 
+
+@media screen and (min-width: 620px) {
+    .pricing-card__views-range {
+        margin: 0 0 1.6rem;
+        grid-row: 2/3;
+        grid-column: 1/3;
+        max-width: 82%;
+    }
+}
 input[type="range"] {
     appearance: none;
     width: 100%;
@@ -195,6 +258,11 @@ input[type="range"]::-moz-range-track {
     gap: 1rem;
 }
 
+@media screen and (min-width: 620px) {
+    .pricing-card__price-container {
+        justify-self: start;
+    }
+}
 .pricing-card__price {
     font-weight: 800;
     font-size: 3.2rem;
@@ -203,9 +271,167 @@ input[type="range"]::-moz-range-track {
     color: #293356;
 }
 
+
+@media screen and (min-width: 620px) {
+    .pricing-card__price {
+        font-size: 4rem;
+        line-height: 5.5rem;
+        color: #848ead;
+    }
+}
 .pricing-card__billing-frequency {
     font-weight: 600;
     font-size: 1.4rem;
     line-height: 1.9rem;
     color: #848ead;
 }
+
+@media screen and (min-width: 620px) {
+    .pricing-card__billing-frequency {
+        font-size: 1.6rem;
+        line-height: 2.2rem;
+    }
+}
+/* Toggle styling  */
+#billing-freq {
+    display: none;
+}
+
+.pricing-card__billing-frequency-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2em;
+    cursor: pointer;
+    transform: translate(-0.6rem);
+}
+
+@media screen and (min-width: 620px) {
+    .pricing-card__billing-frequency-toggle {
+        grid-column: 1/3;
+        transform: translateX(0);
+        margin-bottom: 0.4rem;
+    }
+}
+.toggle {
+    background: #cfd8ef;
+    width: 4.4rem;
+    height: 2.2rem;
+    padding: 0.4rem;
+    border-radius: 1.5rem;
+    transition: background 250ms ease-in-out;
+}
+
+.toggle-circle {
+    display: inline-block;
+    background: white;
+    height: 1.4rem;
+    width: 1.4rem;
+    border-radius: 50%;
+    transform: translate(0);
+    transition: transform 250ms ease-in-out;
+}
+
+/* style checkbox when checked  */
+/* Reminder: p ~ span general sibling combinator: ~ combinator selects siblings that both share same parent. match all span elements that follow p element immediately or not  */
+
+#billing-freq:checked ~ .toggle > .toggle-circle {
+transform: translateX(2.2rem);
+}
+
+/* styling when hover over the label  */
+.pricing-card__billing-frequency-toggle:hover > .toggle, #billing-freq:checked ~ .toggle{
+background: #7aeadf;
+}
+
+.pricing-card__freq-option {
+    font-weight: 600;
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    color: #848ead;
+    position: relative;
+}
+
+@media screen and (min-width: 375px) {
+    .pricing-card__freq-option--annual::after {
+content: "-25%";
+position: absolute;
+width: max-content;
+left: 100%;
+top: 50%;
+transform: translate(0.55rem, -50%);
+background: #feede8;
+font-weight: 800;
+line-height: 1.4rem;
+padding: 0.2rem 0.85rem 0.3rem 0.75rem;
+border-radius: 0.9rem;
+color: #ff8d68;
+    }
+}
+
+@media screen and (min-width: 620px) {
+    .pricing-card__freq-option--annual::after {
+        content: "-25% discount"
+    }
+}
+/* card bottom  */
+.price-card__bottom {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    gap: 3.4rem;
+    padding: 2.4rem 0 0;
+    border-top: 1px solid #ecf0fb;
+    width: 100%;
+}
+
+@media screen and (min-width: 620px) {
+    .price-card__bottom {
+        grid-column: 1/3;
+        flex-flow: row nowrap;
+        padding: 3.2rem 4.4rem 0 4.8rem;
+        justify-content: space-between;
+    }
+}
+/* Features  */
+.pricing-card__features {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    gap: 1rem;
+}
+
+.pricing-card__feature {
+    display: flex;
+    gap: 1.6rem;
+    align-items: center;
+    font-weight: 600;
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    color: #848ead;
+}
+
+@media screen and (min-width: 620px) {
+    .pricing-card__feature {
+        grid-column: 1/2;
+        align-items: flex-start;
+    }
+}
+/* Start trial button  */
+.pricing-card__submit-btn {
+    background: #293356;
+    color: #becdff;
+    font-weight: 800;
+padding: 1.2rem 4.6rem;
+border-radius: 2rem;
+font-size: 1.2rem;
+line-height: 1.6rem;
+cursor: pointer;
+width: max-content;
+transition: color 250ms ease-in-out;
+}
+
+.pricing-card__submit-btn:hover {
+    color: white;
+}
+
